@@ -16,6 +16,8 @@ let correctedN;
 let adjustedLengths;
 let correctedEasting;
 let correctedNorthing;
+let x;
+let y;
 
 $("#getInternalAngle").click(function getAnglesSum() {
 
@@ -59,6 +61,8 @@ function getCorrection() {
     console.log("correction in N : ");
     console.log(corrN);
 
+    x = Number(Easting[0]);
+    y = Number(Northing[0]);
     correctedE = [];
     correctedN = [];
     adjustedLengths = [];
@@ -68,8 +72,10 @@ function getCorrection() {
         correctedE.push(corrE[i] + DeltaE[i]);
         correctedN.push(corrN[i] + DeltaN[i]);
         adjustedLengths.push(Math.sqrt(correctedE[i] ** 2 + correctedN[i] ** 2));
-        correctedEasting.push(corrE[i] + Number(Easting[i + 1]));
-        correctedNorthing.push(corrN[i] + Number(Northing[i + 1]));
+        x += correctedE[i];
+        y += correctedN[i];
+        correctedEasting.push(x);
+        correctedNorthing.push(y);
     }
 
     console.log(correctedE);
